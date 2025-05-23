@@ -1,0 +1,15 @@
+pandas
+numpy
+seaborn
+scikit-learn
+matplotlib
+plotly
+kneed
+DateTime
+sqlalchemy
+streamlit
+pygwalker
+psycopg2-binary
+streamlit-aggrid
+pyodbc
+-e .

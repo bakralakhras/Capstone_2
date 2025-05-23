@@ -1,0 +1,185 @@
+view: clustered_insights {
+  sql_table_name: clustered_insights ;;
+
+  # Dimensions
+  dimension: cluster_label {
+    type: number
+    sql: ${TABLE}.cluster_label ;;
+  }
+
+  dimension: total_spent {
+    type: number
+    sql: ${TABLE}.total_spent ;;
+  }
+  dimension: income {
+    type: number
+    sql: ${TABLE}.income ;;
+  }
+  dimension: marital_status {    # ✅ correct
+    type: string
+    sql: ${TABLE}.marital_status ;;
+  }
+
+
+
+  dimension: num_deals {
+    type: number
+    sql: ${TABLE}.num_deals ;;
+  }
+  dimension: customer_id {
+    type: number
+    sql: ${TABLE}.customer_id ;;
+  }
+
+  dimension: campaign_name {
+    type: string
+    sql: ${TABLE}.campaign_name ;;
+  }
+
+  dimension: accepted {
+    type: number
+    sql: ${TABLE}.accepted ;;
+  }
+
+
+  dimension: num_store_purchases {
+    type: number
+    sql: ${TABLE}.num_store_purchases ;;
+  }
+
+  dimension: num_web_purchases {
+    type: number
+    sql: ${TABLE}.num_web_purchases ;;
+  }
+
+  dimension: num_promos_accepted {
+    type: number
+    sql: ${TABLE}.num_promos_accepted ;;
+  }
+
+  # ✅ NEW campaign fields
+  dimension: acceptedcmp1 {
+    type: number
+    sql: ${TABLE}.acceptedcmp1 ;;
+  }
+
+  dimension: acceptedcmp2 {
+    type: number
+    sql: ${TABLE}.acceptedcmp2 ;;
+  }
+
+  dimension: acceptedcmp3 {
+    type: number
+    sql: ${TABLE}.acceptedcmp3 ;;
+  }
+
+  dimension: acceptedcmp4 {
+    type: number
+    sql: ${TABLE}.acceptedcmp4 ;;
+  }
+
+  dimension: acceptedcmp5 {
+    type: number
+    sql: ${TABLE}.acceptedcmp5 ;;
+  }
+
+  dimension: response {
+    type: number
+    sql: ${TABLE}.response ;;
+  }
+
+  dimension: recency {
+    type: number
+    sql: ${TABLE}.recency ;;
+  }
+
+  dimension: age {
+    type: number
+    sql: ${TABLE}.age ;;
+  }
+
+  # ✅ Safe is_parent for Azure SQL
+  dimension: is_parent {
+    type: string
+    sql: CASE WHEN ${TABLE}.is_parent = 1 THEN 'Yes' ELSE 'No' END ;;
+  }
+
+  dimension: family_size {
+    type: number
+    sql: ${TABLE}.family_size ;;
+  }
+
+  dimension: education_level {
+    type: string
+    sql: ${TABLE}.education_level ;;
+  }
+
+  dimension: living_with {
+    type: string
+    sql: ${TABLE}.living_with ;;
+  }
+
+  dimension: source_file {
+    type: string
+    sql: ${TABLE}.source_file ;;
+  }
+
+  # ✅ Age Group for marketing analysis
+  dimension: age_group {
+    type: string
+    sql: CASE
+            WHEN ${age} < 30 THEN 'Young'
+            WHEN ${age} BETWEEN 30 AND 50 THEN 'Middle Age'
+            ELSE 'Senior'
+         END ;;
+  }
+
+  # ✅ Measures
+  measure: count {
+    type: count
+  }
+
+  measure: total_spent_sum {
+    type: sum
+    sql: ${total_spent} ;;
+  }
+
+  measure: total_spent_avg {
+    type: average
+    sql: ${total_spent} ;;
+  }
+
+  measure: num_deals_sum {
+    type: sum
+    sql: ${num_deals} ;;
+  }
+
+  measure: num_deals_avg {
+    type: average
+    sql: ${num_deals} ;;
+  }
+  measure: income_avg {
+    type: average
+    sql: ${income} ;;
+  }
+
+  measure: age_avg {
+    type: average
+    sql: ${age} ;;
+  }
+
+  measure: num_web_purchases_sum {
+    type: sum
+    sql: ${num_web_purchases} ;;
+  }
+
+  measure: num_store_purchases_sum {
+    type: sum
+    sql: ${num_store_purchases} ;;
+  }
+
+  measure: num_promos_accepted_sum {
+    type: sum
+    sql: ${num_promos_accepted} ;;
+  }
+}

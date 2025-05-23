@@ -1,0 +1,13 @@
+connection: "customer_db"
+
+include: "/views/**/*.view.lkml"
+
+datagroup: customer_segmentation.model_default_datagroup {
+  max_cache_age: "1 hour"
+}
+
+persist_with: customer_segmentation.model_default_datagroup
+
+explore: clustered_insights {
+  label: "Customer Clustering Insights"
+}
